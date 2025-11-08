@@ -22,7 +22,7 @@ if not os.path.exists(CFG_PATH):
 with open(CFG_PATH, "r", encoding="utf-8") as f:
     cfg = json.load(f)
 
-TOKEN = cfg.get("TOKEN")
+TOKEN = os.getenv("TOKEN") or cfg.get("TOKEN")
 CHANNEL_ID = int(cfg.get("CHANNEL_ID", 0))
 
 # Optional image configuration
@@ -161,4 +161,5 @@ if __name__ == "__main__":
             f.write(str(e) + "\n\n")
             f.write(traceback.format_exc())
         input("Press Enter to exit...")
+
 
